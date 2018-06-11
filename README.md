@@ -21,3 +21,9 @@ yarn stop
 python TF_own_data_model.py
 ```
 
+## Train the model
+
+```
+python TF_train_model.py
+```
+
