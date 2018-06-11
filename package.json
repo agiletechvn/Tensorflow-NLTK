@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "scripts": {
     "start": "docker-compose up -d",
+    "bash": "docker-compose exec nlp bash",
     "stop": "docker-compose down"
   },
   "engines": {
