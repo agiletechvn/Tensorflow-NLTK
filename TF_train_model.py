@@ -20,7 +20,7 @@ n_nodes_hl3 = 500
 
 n_classes = 2
 batch_size = 100  # can do batches of 100 images at a time
-x = tf.placeholder('float', [None, len(train_x[0])])  # 28X28 = 784 pizels
+x = tf.placeholder('float', [None, len(train_x[0])], name='X')  # 28X28 = 784 pizels
 y = tf.placeholder('float')
 
 
@@ -90,9 +90,10 @@ def train_neural_network(x):
         correct = tf.equal(tf.argmax(prediction, 1), tf.argmax(y, 1))
         accuracy = tf.reduce_mean(tf.cast(correct, 'float'))
 
-        print('Accuracy:', accuracy.eval({x: test_x, y: test_y}))
+        print('Accuracy:', accuracy.eval({x: test_x, y: test_y}))        
 
         # save trained model
+        tf.add_to_collection("prediction", prediction)
         saver = tf.train.Saver()        
         saver.save(sess, 'trained_model/sentiment_model', global_step=n_epochs)
         print('Save trained model as trained_model/sentiment_model-{}.meta'.format(n_epochs))
